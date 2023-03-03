@@ -1,0 +1,400 @@
+using DataFrames, LinearAlgebra, CSV, StatsBase, DataFramesMeta
+
+SummaryPre22 = CSV.read("summary22_pt.csv", DataFrame)
+Off22 = CSV.read("offense22.csv", DataFrame)
+Def22 = CSV.read("defense22.csv", DataFrame)
+Misc22 = CSV.read("misc22.csv", DataFrame)
+Height22 = CSV.read("height22.csv", DataFrame)
+SummaryPre21 = CSV.read("summary21_pt.csv", DataFrame)
+Off21 = CSV.read("offense21.csv", DataFrame)
+Def21 = CSV.read("defense21.csv", DataFrame)
+Misc21 = CSV.read("misc21.csv", DataFrame)
+Height21 = CSV.read("height21.csv", DataFrame)
+SummaryPre19 = CSV.read("summary19_pt.csv", DataFrame)
+Off19 = CSV.read("offense19.csv", DataFrame)
+Def19 = CSV.read("defense19.csv", DataFrame)
+Misc19 = CSV.read("misc19.csv", DataFrame)
+Height19 = CSV.read("height19.csv", DataFrame)
+SummaryPre18 = CSV.read("summary18_pt.csv", DataFrame)
+Off18 = CSV.read("offense18.csv", DataFrame)
+Def18 = CSV.read("defense18.csv", DataFrame)
+Misc18 = CSV.read("misc18.csv", DataFrame)
+Height18 = CSV.read("height18.csv", DataFrame)
+SummaryPre17 = CSV.read("summary17_pt.csv", DataFrame)
+Off17 = CSV.read("offense17.csv", DataFrame)
+Def17 = CSV.read("defense17.csv", DataFrame)
+Misc17 = CSV.read("misc17.csv", DataFrame)
+Height17 = CSV.read("height17.csv", DataFrame)
+
+select!(SummaryPre22,
+    :TeamName,
+    :Conf,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM
+
+)
+
+
+select!(Off22,
+    :TeamName,
+    :TOPct => :OffTOPct,
+    :ORPct => :OffRPct,
+    :FTRate => :OffFTRate
+)
+
+select!(Def22,
+    :TeamName,
+    :TOPct => :DefTOPct,
+    :ORPct => :DefORAllowed,
+    :FTRate => :DefFTRate
+)
+
+select!(Misc22,
+    :TeamName,
+    :FG2Pct => :Off2Pct,
+    :FG3Pct => :Off3Pct,
+    :FTPct => :OffFTPct,
+    :BlockPct,
+    :OppFG2Pct => :Def2Pct,
+    :OppFG3Pct => :Def3Pct
+)
+
+select!(Height22, 
+    :TeamName,
+    :Size,
+    :Exp
+)
+
+leftjoin!(SummaryPre22, Off22, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre22, Def22, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre22, Misc22, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre22, Height22, on=:TeamName, makeunique=true)
+
+select!(SummaryPre21,
+    :TeamName,
+    :Conf,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM
+
+)
+
+
+select!(Off21,
+    :TeamName,
+    :TOPct => :OffTOPct,
+    :ORPct => :OffRPct,
+    :FTRate => :OffFTRate
+)
+
+select!(Def21,
+    :TeamName,
+    :TOPct => :DefTOPct,
+    :ORPct => :DefORAllowed,
+    :FTRate => :DefFTRate
+)
+
+select!(Misc21,
+    :TeamName,
+    :FG2Pct => :Off2Pct,
+    :FG3Pct => :Off3Pct,
+    :FTPct => :OffFTPct,
+    :BlockPct,
+    :OppFG2Pct => :Def2Pct,
+    :OppFG3Pct => :Def3Pct
+)
+
+select!(Height21, 
+    :TeamName,
+    :Size,
+    :Exp
+)
+
+leftjoin!(SummaryPre21, Off21, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre21, Def21, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre21, Misc21, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre21, Height21, on=:TeamName, makeunique=true)
+
+select!(SummaryPre19,
+    :TeamName,
+    :Conf,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM
+
+)
+
+
+select!(Off19,
+    :TeamName,
+    :TOPct => :OffTOPct,
+    :ORPct => :OffRPct,
+    :FTRate => :OffFTRate
+)
+
+select!(Def19,
+    :TeamName,
+    :TOPct => :DefTOPct,
+    :ORPct => :DefORAllowed,
+    :FTRate => :DefFTRate
+)
+
+select!(Misc19,
+    :TeamName,
+    :FG2Pct => :Off2Pct,
+    :FG3Pct => :Off3Pct,
+    :FTPct => :OffFTPct,
+    :BlockPct,
+    :OppFG2Pct => :Def2Pct,
+    :OppFG3Pct => :Def3Pct
+)
+
+select!(Height19, 
+    :TeamName,
+    :Size,
+    :Exp
+)
+
+leftjoin!(SummaryPre19, Off19, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre19, Def19, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre19, Misc19, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre19, Height19, on=:TeamName, makeunique=true)
+
+select!(SummaryPre18,
+    :TeamName,
+    :Conf,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM
+
+)
+
+
+select!(Off18,
+    :TeamName,
+    :TOPct => :OffTOPct,
+    :ORPct => :OffRPct,
+    :FTRate => :OffFTRate
+)
+
+select!(Def18,
+    :TeamName,
+    :TOPct => :DefTOPct,
+    :ORPct => :DefORAllowed,
+    :FTRate => :DefFTRate
+)
+
+select!(Misc18,
+    :TeamName,
+    :FG2Pct => :Off2Pct,
+    :FG3Pct => :Off3Pct,
+    :FTPct => :OffFTPct,
+    :BlockPct,
+    :OppFG2Pct => :Def2Pct,
+    :OppFG3Pct => :Def3Pct
+)
+
+select!(Height18, 
+    :TeamName,
+    :Size,
+    :Exp
+)
+
+leftjoin!(SummaryPre18, Off18, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre18, Def18, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre18, Misc18, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre18, Height18, on=:TeamName, makeunique=true)
+
+
+select!(SummaryPre17,
+    :TeamName,
+    :Conf,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM
+
+)
+
+
+select!(Off17,
+    :TeamName,
+    :TOPct => :OffTOPct,
+    :ORPct => :OffRPct,
+    :FTRate => :OffFTRate
+)
+
+select!(Def17,
+    :TeamName,
+    :TOPct => :DefTOPct,
+    :ORPct => :DefORAllowed,
+    :FTRate => :DefFTRate
+)
+
+select!(Misc17,
+    :TeamName,
+    :FG2Pct => :Off2Pct,
+    :FG3Pct => :Off3Pct,
+    :FTPct => :OffFTPct,
+    :BlockPct,
+    :OppFG2Pct => :Def2Pct,
+    :OppFG3Pct => :Def3Pct
+)
+
+select!(Height17, 
+    :TeamName,
+    :Size,
+    :Exp
+)
+
+leftjoin!(SummaryPre17, Off17, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre17, Def17, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre17, Misc17, on=:TeamName, makeunique=true)
+leftjoin!(SummaryPre17, Height17, on=:TeamName, makeunique=true)
+
+Winners22 = ["Houston", "Virginia Tech", "Vermont", "Richmond", "Bellarmine", "Kansas", "Villanova",
+"Montana St.", "Longwood", "Iowa", "Cal St. Fullerton", "Delaware", "UAB", "Wright St.",
+"Yale", "Saint Peter's", "Akron", "Norfolk St.", "Loyola Chicago", "Boise St.", "Bryant", 
+"Murray St.", "Arizona", "Colgate", "Tennessee", "Chattanooga", "Texas A&M Corpus Chris",
+"South Dakota St.", "Georgia St.", "Texas Southern", "New Mexico St.", "Gonzaga"]
+
+RankSum22 = @by(SummaryPre22, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
+:AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
+:OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
+
+Winners2022 = subset(RankSum22, :TeamName => ByRow(∈(Winners22)), skipmissing=true)
+
+Winners2022.Year .= 22
+show(Winners2022, allrows=true)
+
+Winners21 = ["Houston", "Georgia Tech", "Hartford", "St. Bonaventure", "Liberty", "Texas",
+"Georgetown", "Eastern Washington", "Winthrop", "Illinois", "UC Santa Barbara", "Drexel",
+"North Texas", "Cleveland St.", "Iona", "Ohio", "Norfolk St.", "Loyola Chicago", 
+"San Diego St.", "Mount St. Mary's", "Morehead St.", "Oregon St.", "Colgate", "Alabama",
+"UNC Greensboro", "Abilene Christian", "Oral Roberts", "Appalachian St.", "Texas Southern",
+"Grand Canyon", "Gonzaga"]
+
+RankSum21 = @by(SummaryPre21, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
+:AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
+:OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
+Winners2021 = subset(RankSum21, :TeamName => ByRow(∈(Winners21)), skipmissing=true)
+Winners2021.Year .= 21
+
+Winners19 = ["Cincinnati", "Duke", "Vermont", "Saint Louis", "Liberty", "Iowa St.",
+"Villanova", "Montana", "Gardner Webb", "Michigan St.", "UC Irvine", "Northeastern",
+"Old Dominion", "Northern Kentucky", "Yale", "Iona", "Buffalo", "North Carolina Central",
+"Bradley", "Utah St.", "Fairleigh Dickinson", "Murray St.", "Oregon", "Colgate", "Auburn",
+"Wofford", "Abilene Christian", "North Dakota St.", "Georgia St.", "Prairie View A&M", 
+"New Mexico St.", "Saint Mary's"]
+
+RankSum19 = @by(SummaryPre19, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
+:AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
+:OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
+Winners2019 = subset(RankSum19, :TeamName => ByRow(∈(Winners19)), skipmissing=true)
+Winners2019.Year .= 19
+
+Winners18 = ["Cincinnati", "Virginia", "UMBC", "Davidson", "Lipscomb", "Kansas", "Villanova",
+"Montana", "Radford", "Michigan", "Cal St. Fullerton", "College of Charleston", "Marshall", 
+"Wright St.", "Penn", "Iona", "Buffalo", "North Carolina Central", "Loyola Chicago", "San Diego St.",
+"LIU Brooklyn", "Murray St.", "Arizona", "Bucknell", "Kentucky", "UNC Greensboro", "Stephen F. Austin",
+"South Dakota St.", "Georgia St.", "Texas Southern", "New Mexico St.", "Gonzaga"]
+
+RankSum18 = @by(SummaryPre18, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
+:AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
+:OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
+Winners2018 = subset(RankSum18, :TeamName => ByRow(∈(Winners18)), skipmissing=true)
+Winners2018.Year .= 18
+
+Winners17 = ["SMU", "Duke", "Vermont", "Rhode Island", "Florida Gulf Coast", "Iowa St.", "Villanova",
+"North Dakota", "Winthrop", "Michigan", "UC Davis", "UNC Wilmington", "Middle Tennessee", "Northern Kentucky",
+"Princeton", "Iona", "Kent St.", "North Carolina Central", "Wichita St.", "Nevada",
+"Mount St. Mary's", "Jacksonville St.", "Arizona", "Bucknell", "Kentucky", "East Tennessee St.", 
+"New Orleans", "South Dakota St.", "Troy", "Texas Southern", "New Mexico St.", "Gonzaga"]
+
+RankSum17 = @by(SummaryPre17, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
+:AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
+:OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
+Winners2017 = subset(RankSum17, :TeamName => ByRow(∈(Winners17)), skipmissing=true)
+Winners2017.Year .= 17
+
+CSV.write("Rankings22.csv", Winners2022)
+CSV.write("Rankings21.csv", Winners2021)
+CSV.write("Rankings19.csv", Winners2019)
+CSV.write("Rankings18.csv", Winners2018)
+CSV.write("Rankings17.csv", Winners2017)
+
+AllYears = vcat(Winners2022, Winners2021, Winners2019, Winners2018, Winners2017)
+AllYears = select(AllYears,
+    :Year,
+    :TeamName,
+    :Conf,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM,
+    :OffRPct,
+    :OffFTRate,
+    :DefTOPct,
+    :DefORAllowed,
+    :DefFTRate,
+    :Off2Pct,
+    :Off3Pct,
+    :OffFTPct,
+    :BlockPct,
+    :Def2Pct,
+    :Def3Pct,
+    :Size,
+    :Exp
+
+
+)
+sort!(AllYears, :Conf)
+show(AllYears, allrows=true)
+CSV.write("AllYearsChamp.csv", AllYears)
+
+Power5 = ["ACC", "B10", "B12",  "P12", "SEC"]
+Next5 = ["A10", "Amer", "CUSA" ,"MWC", "WCC"]
+
+Power5Df = subset(AllYears, :Conf => ByRow(∈(Power5)), skipmissing=true)
+Next5Df = subset(AllYears, :Conf => ByRow(∈(Next5)), skipmissing=true)
+CSV.write("Power5.csv", Power5Df)
+CSV.write("Next5.csv", Next5Df)
+
+
