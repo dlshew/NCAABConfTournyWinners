@@ -276,9 +276,9 @@ Winners22 = ["Houston", "Virginia Tech", "Vermont", "Richmond", "Bellarmine", "K
 RankSum22 = @by(SummaryPre22, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
 :AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
 :OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
-:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=false),
 :Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
-:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=false), :Def3Pct = competerank(:Def3Pct, rev=false), 
 :Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
 
 Winners2022 = subset(RankSum22, :TeamName => ByRow(∈(Winners22)), skipmissing=true)
@@ -296,9 +296,9 @@ Winners21 = ["Houston", "Georgia Tech", "Hartford", "St. Bonaventure", "Liberty"
 RankSum21 = @by(SummaryPre21, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
 :AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
 :OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
-:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=false),
 :Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
-:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=false), :Def3Pct = competerank(:Def3Pct, rev=false), 
 :Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
 Winners2021 = subset(RankSum21, :TeamName => ByRow(∈(Winners21)), skipmissing=true)
 Winners2021.Year .= 21
@@ -313,9 +313,9 @@ Winners19 = ["Cincinnati", "Duke", "Vermont", "Saint Louis", "Liberty", "Iowa St
 RankSum19 = @by(SummaryPre19, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
 :AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
 :OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
-:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=false),
 :Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
-:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=false), :Def3Pct = competerank(:Def3Pct, rev=false), 
 :Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
 Winners2019 = subset(RankSum19, :TeamName => ByRow(∈(Winners19)), skipmissing=true)
 Winners2019.Year .= 19
@@ -329,9 +329,9 @@ Winners18 = ["Cincinnati", "Virginia", "UMBC", "Davidson", "Lipscomb", "Kansas",
 RankSum18 = @by(SummaryPre18, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
 :AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
 :OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
-:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=false),
 :Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
-:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=false), :Def3Pct = competerank(:Def3Pct, rev=false), 
 :Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
 Winners2018 = subset(RankSum18, :TeamName => ByRow(∈(Winners18)), skipmissing=true)
 Winners2018.Year .= 18
@@ -345,9 +345,9 @@ Winners17 = ["SMU", "Duke", "Vermont", "Rhode Island", "Florida Gulf Coast", "Io
 RankSum17 = @by(SummaryPre17, :Conf, :TeamName, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
 :AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
 :OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
-:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=false),
 :Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
-:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=true), :Def3Pct = competerank(:Def3Pct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=false), :Def3Pct = competerank(:Def3Pct, rev=false), 
 :Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
 Winners2017 = subset(RankSum17, :TeamName => ByRow(∈(Winners17)), skipmissing=true)
 Winners2017.Year .= 17
