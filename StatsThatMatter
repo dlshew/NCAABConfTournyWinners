@@ -1,0 +1,101 @@
+using DataFrames, LinearAlgebra, CSV, StatsBase, DataFramesMeta, StatsPlots
+
+Rank22 = CSV.read("Rankings22.csv", DataFrame)
+Rank21 = CSV.read("Rankings21.csv", DataFrame) 
+Rank19 = CSV.read("Rankings19.csv", DataFrame)
+Rank18 = CSV.read("Rankings18.csv", DataFrame)
+Rank17 = CSV.read("Rankings17.csv", DataFrame)
+AllYears = CSV.read("AllYearsChamp.csv", DataFrame)
+Power5 = CSV.read("Power5.csv", DataFrame)
+Next5 = CSV.read("Next5.csv", DataFrame)
+show(describe(AllYears), allrows=true)
+
+#can see how they all combined look 
+#show(AllYears, allrows=true)
+#show(describe(AllYears), allrows=true)
+#show(describe(Power5), allrows=true)
+#show(describe(Next5), allrows=true)
+#show(Power5, allrows=true)
+#show(Next5, allrows=true)
+#Stuff that looks like it matters
+OEplot = @df AllYears histogram(:OE, label="OE", xlabel="Offensive Efficeny", ylabel="Frequency")
+savefig("AllYearOE.png")
+
+AdjOEplot= @df AllYears histogram(:AdjOE, label="AdjOE", xlabel="Adj Offensive Efficeny", ylabel="Frequency")
+savefig("AllYearAdjOE.png")
+
+DEplot = @df AllYears histogram(:DE, label="DE", xlabel="Defensive Efficeny", ylabel="Frequency")
+savefig("AllYearDE.png")
+
+AdjDEplot = @df AllYears histogram(:AdjDE, label="AdjDE", xlabel="Adj Defensive Efficeny", ylabel="Frequency")
+savefig("AllYearAdjDE.png")
+
+plot(OEplot, AdjOEplot, DEplot, AdjDEplot, layout=(2,2), legend=false)
+savefig("EfficeniesPlot.png")
+#Stuff that might
+O2PctPlot = @df AllYears histogram(:Off2Pct, label="2pct", xlabel="2pt Shooting %", ylabel="Frequency")
+savefig("Off2ptPer.png")
+
+O3PctPlot = @df AllYears histogram(:Off3Pct, label="3pct", xlabel="3pt Shooting %", ylabel="Frequency")
+savefig("AllYearOE.png")
+
+D2PctPlot = @df AllYears histogram(:Def2Pct, label="2pctD", xlabel="2pt Shooting % D", ylabel="Frequency")
+savefig("Def2ptPer.png")
+
+D3PctPlot = @df AllYears histogram(:Def3Pct, label="3pctD", xlabel="3pt Shooting % D", ylabel="Frequency")
+savefig("Def3ptPer.png")
+plot(O2PctPlot, O3PctPlot, D2PctPlot, D3PctPlot, layout=(2,2), legend=false)
+savefig("Def3pct.png")
+
+#Morestuff tht might 
+ORebPctPlot = @df AllYears histogram(:OffRPct, label="ORB%", xlabel="Off Rebound %", ylabel="Frequency")
+savefig("ORebPct.png")
+
+DefFTRatePlot = @df AllYears histogram(:DefFTRate, label="DefFtRate", xlabel="Defense FT Rate", ylabel="Frequency")
+savefig("DefFTRate.png")
+
+BlockPctPlot = @df AllYears histogram(:BlockPct, label="Block%", xlabel="Block %", ylabel="Frequency")
+savefig("BlockPct.png")
+
+ExpPlot = @df AllYears histogram(:Exp, label="Exp", xlabel="Exp", ylabel="Frequency")
+savefig("Def3ptPer.png")
+plot(ORebPctPlot, DefFTRatePlot, BlockPctPlot, ExpPlot, layout=(2,2), legend=false)
+savefig("MiscStuff.png")
+#Stuff that doesn't 
+TempoPlot = @df AllYears histogram(:Tempo, label="Tempo", xlabel="Tempo", ylabel="Frequency")
+savefig("Tempo.png")
+
+OffFTRatePlot = @df AllYears histogram(:OffFTRate, label="OffFTRate", xlabel="Free Throw Attempts", ylabel="Frequency")
+savefig("AllYearOffFtRate.png")
+
+OffFTPctPlot = @df AllYears histogram(:OffFTPct, label="OffFT%", xlabel="Free Throw Shooting %", ylabel="Frequency")
+savefig("AllYearFTPct.png")
+
+SizePlot = @df AllYears histogram(:Size, label="Size", xlabel="Size", ylabel="Frequency")
+savefig("AllYearFTPct.png")
+
+plot(TempoPlot, OffFTRatePlot, OffFTPctPlot, SizePlot, legend=false)
+savefig("Nonsense.png")
+StuffThatMatters = select(AllYears, Not([:Tempo, :OffFTRate, :DefTOPct,  :DefORAllowed, :OffFTPct, :Size]))
+show(StuffThatMatters)
+#@df AllYears density([:AdjOE, :OE], label=["AdjOE", "OE"], xlabel="Offensive Efficeny", ylabel="Probability")
+#savefig("DensityAllYearOE.png")
+
+#println("OE ranks ", countmap(AllYears.OE))
+#println("Adj OE ranks ", countmap(AllYears.AdjOE))
+#println("Adj OffFTRate ranks ", countmap(AllYears.OffFTRate))
+show(StuffThatMatters, allrows=true)
+#list of teams not in top 3 off or D 
+#22 richmond, 21 Georgia Tech, 19 Gardner, 18 Marshall, 18 LIU Brooklyn , 21 Oregon St, 17 Jacksonville st,
+#21 App St, 
+NotTop3 = DataFrame(StuffThatMatters[[1,7,48,64,103,111,109,121], :])
+#Not top 2 in O or D 
+#22 richmond, 21 Georgia Tech, 19 Gardner, 18 Marshall, 18 LIU Brooklyn , 21 Oregon St, 17 Jacksonville st,
+#21 App St, 19 NDSU, 18 Kentucky, 19 Georgia St, 22 Goergia St, 17 Arizona, 17 Kent St, 22 Akron, 22 Delaware,
+# 19Cal St Fullerton, 21 Georgetown, 17 Iowa St, 21 Texas
+NotTop2 = DataFrame(StuffThatMatters[[1,7,48,64,103,111,109,121,147,133,122,114,84,80,56,54,37,35,32], :])
+#show(describe(AllYears), allrows=true)
+#show(StuffThatMatters, allrows=true)
+#show(NotTop2, allrows=true)
+show(NotTop2, allrows=true)
+show(describe(NotTop2), allrows=true)
