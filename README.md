@@ -1,2 +1,2 @@
 # NCAABConfTournyWinners
-What are teams that win confernce touranments good at 
+Taking stats from kenpom to see what college basketball confernce champions do well. The data comes from pretournament and end of season which obviosly isnt great for predicting tournaments that happen before then but I don't think its that big of an issue. The code is bad a lot of it is commented out but I just wanted to post it, I'll be cleaning it up and making it look better after the tournament, if you have any questions or improvements you can just rwach out to me.
