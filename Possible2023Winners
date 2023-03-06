@@ -1,0 +1,92 @@
+using DataFrames, LinearAlgebra, CSV, StatsBase, DataFramesMeta, StatsPlots
+#lines 1 - 
+Ratings = CSV.read("Season23.csv", DataFrame)
+Off = CSV.read("offense23.csv", DataFrame)
+Def = CSV.read("defense23.csv", DataFrame)
+Mis = CSV.read("misc23.csv", DataFrame)
+Sum = CSV.read("summary23.csv", DataFrame)
+Height = CSV.read("height23.csv", DataFrame)
+select!(Sum,
+    :TeamName,
+    :Tempo,
+    :OE,
+    :AdjOE,
+    :DE,
+    :AdjDE,
+    :AdjEM
+
+)
+
+select!(Off,
+    :TeamName,
+    :TOPct => :OffTOPct,
+    :ORPct => :OffRPct,
+    :FTRate => :OffFTRate
+)
+
+select!(Def,
+    :TeamName,
+    :TOPct => :DefTOPct,
+    :ORPct => :DefORAllowed,
+    :FTRate => :DefFTRate
+)
+
+select!(Mis,
+    :TeamName,
+    :FG2Pct => :Off2Pct,
+    :FG3Pct => :Off3Pct,
+    :FTPct => :OffFTPct,
+    :BlockPct,
+    :OppFG2Pct => :Def2Pct,
+    :OppFG3Pct => :Def3Pct
+)
+
+leftjoin!(Ratings, Sum, on=:TeamName, makeunique=true)
+leftjoin!(Ratings, Off, on=:TeamName, makeunique=true)
+leftjoin!(Ratings, Def, on=:TeamName, makeunique=true)
+leftjoin!(Ratings, Mis, on=:TeamName, makeunique=true)
+leftjoin!(Ratings, Height, on=:TeamName, makeunique=true)
+
+
+Ratings = @by(Ratings, :Conf, :TeamName, :Rating, :SRating, :Tempo = competerank(:Tempo, rev=true), :OE = competerank(:OE, rev=true), 
+:AdjOE = competerank(:AdjOE, rev=true), :DE = competerank(:DE), :AdjDE = competerank(:AdjDE), :AdjEM = competerank(:AdjEM, rev=true), 
+:OffTOPct = competerank(:OffTOPct, rev=true), :OffRPct = competerank(:OffRPct, rev=true),  :OffFTRate = competerank(:OffFTRate, rev=true),
+:DefTOPct = competerank(:DefTOPct, rev=true), :DefORAllowed = competerank(:DefORAllowed, rev=true), :DefFTRate = competerank(:DefFTRate, rev=false),
+:Off2Pct = competerank(:Off2Pct, rev=true), :Off3Pct = competerank(:Off3Pct, rev=true), :OffFTPct = competerank(:OffFTPct, rev=true), 
+:BlockPct = competerank(:BlockPct, rev=true), :Def2Pct = competerank(:Def2Pct, rev=false), :Def3Pct = competerank(:Def3Pct, rev=false), 
+:Size = competerank(:Size, rev=true), :Exp = competerank(:Exp, rev=true))
+
+StuffThatMatters = select(Ratings, Not([:Tempo, :OffFTRate, :DefTOPct,  :DefORAllowed, :OffFTPct, :Size]))
+sort!(StuffThatMatters, :SRating, rev=true)
+American = subset(StuffThatMatters, :Conf => ByRow(==("Amer")), skipmissing=true)
+CSV.write("American.csv", American)
+ACC = subset(StuffThatMatters, :Conf => ByRow(==("ACC")), skipmissing=true)
+CSV.write("American.csv", American)
+A10 = subset(StuffThatMatters, :Conf => ByRow(==("10")), skipmissing=true)
+CSV.write("American.csv", American)
+B12 = subset(StuffThatMatters, :Conf => ByRow(==("B12")), skipmissing=true)
+CSV.write("American.csv", American)
+BigEast = subset(StuffThatMatters, :Conf => ByRow(==("BE")), skipmissing=true)
+CSV.write("American.csv", American)
+B10 = subset(StuffThatMatters, :Conf => ByRow(==("B10")), skipmissing=true)
+CSV.write("American.csv", American)
+BigWest = subset(StuffThatMatters, :Conf => ByRow(==("BW")), skipmissing=true)
+CSV.write("American.csv", American)
+Ivy = subset(StuffThatMatters, :Conf => ByRow(==("Ivy")), skipmissing=true)
+CSV.write("American.csv", American)
+MAAC = subset(StuffThatMatters, :Conf => ByRow(==("MAAC")), skipmissing=true)
+CSV.write("American.csv", American)
+MAC = subset(StuffThatMatters, :Conf => ByRow(==("MAC")), skipmissing=true)
+CSV.write("American.csv", American)
+MEAC = subset(StuffThatMatters, :Conf => ByRow(==("MEAC")), skipmissing=true)
+CSV.write("American.csv", American)
+MWC = subset(StuffThatMatters, :Conf => ByRow(==("MWC")), skipmissing=true)
+CSV.write("American.csv", American)
+P12 = subset(StuffThatMatters, :Conf => ByRow(==("P12")), skipmissing=true)
+CSV.write("American.csv", American)
+SEC = subset(StuffThatMatters, :Conf => ByRow(==("SEC")), skipmissing=true)
+CSV.write("American.csv", American)
+SWAC = subset(StuffThatMatters, :Conf => ByRow(==("SWAC")), skipmissing=true)
+CSV.write("American.csv", American)
+WAC = subset(StuffThatMatters, :Conf => ByRow(==("WAC")), skipmissing=true)
+CSV.write("American.csv", American)
